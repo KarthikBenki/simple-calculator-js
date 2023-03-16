@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            background-image: linear-gradient(to left, red, blue);
+            align-items: center;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .calculator {
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 40%;
+        }
+
+        .nav-links {
+            display: flex;
+
+        }
+
+        .nav-links .nav-link {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+
+
+
+        }
+
+        .buttons .btn {
+            border: 1px solid black;
+            cursor: pointer;
+            background-color: aqua;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .screen {
+            border: 1px solid black;
+            height: 30px;
+            text-align: right;
+            background-color: azure;
+
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 10px;
+            font-size: 40px;
+           
+        }
+    </style>
+    <title>Calculator</title>
+</head>
+
+<body>
+    <header class="nav">
+        <h1 class="nav-heading">Calculator</h1>
+
+        <ul class="nav-links" type="none">
+            <li class="nav-link">Home</li>
+            <li class="nav-link">About</li>
+            <li class="nav-link">Contact Us</li>
+        </ul>
+
+    </header>
+
+
+    <div class="calculator">
+        <div class="screen" id="screen">
+            0
+        </div>
+
+        <div class="buttons">
+            <div class="btn" onclick="append(9)">9</div>
+            <div class="btn" onclick="append(8)">8</div>
+            <div class="btn" onclick="append(7)">7</div>
+            <div class="btn" onclick="append(6)">6</div>
+            <div class="btn" onclick="append(5)">5</div>
+            <div class="btn" onclick="append(4)">4</div>
+            <div class="btn" onclick="append(3)">3</div>
+            <div class="btn" onclick="append(2)">2</div>
+            <div class="btn" onclick="append(1)">1</div>
+            <div class="btn" onclick="append(0)">0</div>
+            <div class="btn" onclick="append('+')">+</div>
+            <div class="btn" onclick="append('-')">-</div>
+            <div class="btn" onclick="append('*')">*</div>
+            <div class="btn" onclick="append('/')">/</div>
+            <div class="btn" onclick="calculate()">=</div>
+            <div class="btn" onclick="clearScreen()">clear</div>
+        </div>
+    </div>
+
+
+    <script>
+        let gotAnswer = false;
+        function append(value){
+            if (gotAnswer) {
+                clearScreen()
+                gotAnswer = false;
+            }
+            let screen = document.getElementById('screen');
+            if (screen.innerText==0) {
+                screen.innerText = value
+                return;
+            }
+            screen.innerText+=value
+        }
+
+        function calculate(){
+            console.log("calculating");
+            let screen = document.getElementById('screen');
+           screen.innerText =  eval(screen.innerText)
+           gotAnswer = true;
+        }
+
+        function clearScreen(){
+            document.getElementById('screen').innerText = '0'
+        }
+    </script>
+
+</body>
+
+</html>
